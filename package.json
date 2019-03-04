@@ -1,0 +1,36 @@
+{
+  "name": "transcriber",
+  "productName": "Transcriber",
+  "version": "1.0.5",
+  "description": "Simple transcription assistant.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . electron-tutorial-app --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/icon128.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Transcriber\"",
+    "package-win1": "electron-packager . electron-tutorial-app --overwrite --platform=win32 --arch=ia32 --icon=assets/icon128.ico --prune=false --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Transcriber\"",
+    "package-linux": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds"
+  },
+  "keywords": [
+    "transcribe",
+    "audio",
+    "typing",
+    "playback",
+    "pause"
+  ],
+  "author": "sitecode",
+  "license": "MIT",
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.2.0",
+    "electron": "^2.0.0",
+    "electron-packager": "^12.1.0",
+    "electron-rebuild": "^1.7.3",
+    "electron-winstaller": "^2.6.4"
+  },
+  "dependencies": {
+    "electron-settings": "^3.2.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "jquery": "^3.3.1",
+    "npm": "^6.1.0"
+  }
+}

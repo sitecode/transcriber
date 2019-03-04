@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Transcriber</title>
+	<style>
+/* https://blog.dcpos.ch/how-to-make-your-electron-app-sexy */
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+body {
+  /* Disable text selection, or your app will feel like a web page */
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+
+  /* Cover the whole window */
+  height: 100%;
+
+  /* Make sure this matches the native window background color that you pass to
+   * electron.BrowserWindow({...}), otherwise your app startup will look janky. */
+  background: rgb(240, 240, 240);
+  
+  /* Smoother startup */
+  animation: fadein 0.25s;
+}
+
+html, body {
+    height: 100%;
+  background: rgb(240, 240, 240);
+}
+body {
+    margin: 0;
+}
+.flex-container {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex-column {
+	flex-direction: column;
+width:100%;
+}
+
+
+
+
+.flex-container1 {display:flex;
+flex-direction: column;
+align-content: stretch;
+align-items: stretch;
+}
+DELbody >div> div { flex: 1 auto;display:flex; }
+#player{
+display:flex;
+align-self:stretch;
+}
+#player audio{
+flex:1;
+background: rgb(240, 240, 240);
+}
+#texter {
+    display: flex;
+    flex: 1;
+align-self:stretch;
+}
+#texter textarea {
+    flex: 1;
+}
+	</style>
+  </head>
+  <body class="app">
+  <div class="flex-container">
+  <div class="flex-container flex-column">
+	  <div id="chooser">
+		<select>
+	<option value="0">Loading...</option>
+		</select>
+		<i class="fas fa-print" id="print"></i>
+	  </div>
+	  <div id="player">
+		<audio id="audio" controls="controls">
+		  <source id="audioSource" src=""></source>
+		  Your browser does not support the audio format.
+		</audio>
+	  </div>
+	  <div id="texter">
+	    <textarea></textarea>
+	  </div>
+  </div>
+  </div>
+  <!--
+    <h1>Transcriber</h1>
+    We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+
+  <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
+  poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+    <source src="MY_VIDEO.mp4" type='video/mp4'>
+    <source src="MY_VIDEO.webm" type='video/webm'>
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+  </video>
+//https://ourcodeworld.com/articles/read/202/how-to-include-and-use-jquery-in-electron-framework
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/mediaelement/build/mediaelement.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/asuggest/jquery.asuggest.js"></script>
+-->	
+
+ <script>window.$ = window.jQuery = require('jquery');</script> 
+    <script type="text/javascript" src="./js/asuggest/jquery.a-tools-1.4.1.js"></script>
+	
+    <script type="text/javascript" src="./node_modules/@fortawesome/fontawesome-free/js/all.js"></script>
+    <script>
+/*
+	//https://ourcodeworld.com/articles/read/485/how-to-implement-and-enable-the-grammar-and-spellchecker-in-electron-framework
+	//https://github.com/electron-userland/electron-spellchecker/blob/8a8f9e74a0d1c50b5dc5033c21cc952ac075438c/src/context-menu-builder.js
+        // Require the electron spellchecker
+        const electronSpellchecker = require('electron-spellchecker');
+
+        // Retrieve required properties
+        const SpellCheckHandler = electronSpellchecker.SpellCheckHandler;
+        const ContextMenuListener = electronSpellchecker.ContextMenuListener;
+        const ContextMenuBuilder = electronSpellchecker.ContextMenuBuilder;
+
+        // Configure the spellcheckhandler
+        window.spellCheckHandler = new SpellCheckHandler();
+        window.spellCheckHandler.attachToInput();
+
+        // Start off as "US English, America"
+        window.spellCheckHandler.switchLanguage('en-US');
+
+//to show less context menu and remove google search
+class ContextMenuBuilderMe extends electronSpellchecker.ContextMenuBuilder{
+  async buildMenuForElement(info) {
+    if (info.isEditable || (info.inputFieldType && info.inputFieldType !== 'none')) {
+      return await this.buildMenuForTextInput(info);
+    }
+
+    //return this.buildMenuForText(info);
+  }
+  addSearchItems(menu, menuInfo) {
+    return menu;
+  }
+
+}
+
+        // Create the builder with the configured spellhandler
+        let contextMenuBuilder = new ContextMenuBuilderMe(window.spellCheckHandler);
+
+        // Add context menu listener
+        let contextMenuListener = new ContextMenuListener((info) => {
+	    //info.selectionText = '';//remove google from original class
+            contextMenuBuilder.showPopupMenu(info);
+        });
+*/
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+  </body>
+</html>

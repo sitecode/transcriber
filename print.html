@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<head> </head>
+<body>
+    <script>
+        const ipcRenderer = require("electron").ipcRenderer;
+
+        ipcRenderer.on("setContent", (event, content) => {
+            document.body.innerHTML = content;
+
+            ipcRenderer.send("contentSet");
+        });
+    </script>
+</body>
